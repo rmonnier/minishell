@@ -12,7 +12,14 @@
 
 NAME				=		minishell
 
-SRCS_NAME			=		minishell.c
+SRCS_NAME			=		exec_cmd.c\
+									get_path.c\
+									minishell.c\
+									ft_strjoindelimiter.c\
+									ft_strtabdup.c\
+									ft_strtabfree.c\
+									ft_strtabprint.c\
+									parse_prompt.c
 SRCS_PATH			=		srcs/
 SRCS				=		$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

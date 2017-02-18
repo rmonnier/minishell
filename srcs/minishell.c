@@ -6,26 +6,81 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/15 19:42:52 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/16 17:10:58 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-#include <sys/types.h>
-#include <sys/uio.h>
-#include <unistd.h>
-
-int		main(void)
+int	is_path(char *str)
 {
-	char *str;
-
-	ft_printf("Welcome to minishell - version 0.1\n");
-	ft_printf("Enter your command: > ");
-	while (get_next_line(0, &str))
+	while (*str)
 	{
-		ft_printf("%s\n", str);
-		ft_printf("Enter your command: > ");
+		if (*str == '/')
+			return (1);
+		str++;
+	}
+	return (0);
+}
+
+int	is_builtin(char *str)
+{
+	if (ft_strcmp(str, "cd") == 0)
+			return (1);
+	else if (ft_strcmp(str, "echo") == 0)
+			return (1);
+	else if (ft_strcmp(str, "env") == 0)
+			return (1);
+	else if (ft_strcmp(str, "setenv") == 0)
+			return (1);
+	else if (ft_strcmp(str, "unsetenv") == 0)
+			return (1);
+	else if (ft_strcmp(str, "exit") == 0)
+			return (1);
+	return (0);
+}
+
+int		exec_cmds(char **cmds, char **env)
+{
+	char *path;
+
+	path = cmds[0];
+	if (!path)
+		return (0);
+	if (is_path(path))
+	{
+		exec_cmd(path, cmds, env);
+	}
+	else if (is_builtin(path))
+	{
+		run_builtin(path, env);
+		ft_printf("builtin\n");
+	}
+	else if ((path = get_path(path, env)))
+	{
+		exec_cmd(path, cmds, env);
+		ft_strdel(&path);
 	}
 	return (1);
+}
+
+int		main(int ac, char **av, char **env_ini)
+{
+	char	*line;
+	char	**env;
+	char	**cmds;
+
+	(void)ac;
+	(void)av;
+	env = ft_strtabdup(env_ini);
+	ft_printf("Welcome to minishell - version 0.1\n");
+	while (ft_printf("$> ") && get_next_line(0, &line) == 1)
+	{
+		cmds = parse_prompt(line);
+		exec_cmds(cmds, env);
+		ft_strtabfree(cmds);
+		ft_strdel(&line);
+	}
+	ft_strtabfree(env);
+	return (0);
 }
