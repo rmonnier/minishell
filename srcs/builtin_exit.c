@@ -12,7 +12,10 @@
 
 #include "minishell.h"
 
-int		builtin_env(char *path, char **env)
+void		builtin_exit(char **cmds, char **env)
 {
-	return (0);
+	ft_strtabfree(cmds);
+	ft_strtabfree(env);
+	ft_printf("Bye bye!\n");
+	exit(EXIT_SUCCESS);
 }

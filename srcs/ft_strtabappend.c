@@ -1,31 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strtabappend.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:28:14 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/19 12:29:21 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/19 12:29:40 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		exec_cmd(char *path, char **argv, char **envp)
+static int	tabsize(char **tab)
 {
-	pid_t	id_fils;
-	int		stat_loc;
-	int		pid_son;
+	int		n;
 
-	id_fils = fork();
-	if (id_fils == 0)
+	n = 0;
+	while (*tab)
 	{
-		execve(path, argv, envp);
+		n++;
+		tab++;
 	}
-	else
+	return (n);
+}
+
+char		**ft_strtabappend(char **tab, char *str)
+{
+	int		i;
+	int		len;
+	char	**output;
+
+	len = tabsize(tab) + 1;
+	output = (char**)ft_memalloc(sizeof(char*) * (len + 1));
+	output[0] = ft_strdup(str);
+	i = 1;
+	while (i < len)
 	{
-		pid_son = wait(&stat_loc);
+		output[i] = ft_strdup(tab[i - 1]);
+		free(tab[i - 1]);
+		i++;
 	}
-	return (1);
+	free(tab);
+	return (output);
 }

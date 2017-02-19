@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/16 12:25:57 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/16 12:34:07 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/19 12:28:35 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/19 12:29:12 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ static int	tabsize(char **tab)
 	return (n);
 }
 
-
-char	**ft_strtabdup(char **tab)
+char		**ft_strtabdup(char **tab)
 {
 	int		i;
 	int		len;

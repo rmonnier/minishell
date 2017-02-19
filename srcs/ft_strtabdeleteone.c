@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strtabdup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:28:14 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/16 12:25:57 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/16 12:34:07 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		exec_cmd(char *path, char **argv, char **envp)
+char	**ft_strtabdeleteone(char **tab, char *str)
 {
-	pid_t	id_fils;
-	int		stat_loc;
-	int		pid_son;
+	int		i;
 
-	id_fils = fork();
-	if (id_fils == 0)
+	i = 0;
+	while (tab[i] && tab[i] != str)
+		i++;
+	if (tab[i] && tab[i] == str)
 	{
-		execve(path, argv, envp);
+		free(tab[i]);
+		tab[i] = tab[i + 1];
 	}
-	else
+	while (tab[i])
 	{
-		pid_son = wait(&stat_loc);
+		tab[i] = tab[i + 1];
+		i++;
 	}
-	return (1);
+	return (tab);
 }

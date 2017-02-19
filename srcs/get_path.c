@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/16 17:10:58 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/19 12:33:20 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**get_binfolders(char **env)
 
 int		isinfolder(char *binfolder, char *name)
 {
-	DIR						*dir;
+	DIR				*dir;
 	struct dirent	*entry;
 
 	if (!(dir = opendir(binfolder)))
@@ -47,21 +47,30 @@ int		isinfolder(char *binfolder, char *name)
 	return (0);
 }
 
+/*
+**get_path
+**returns a malloced path of the command "name",
+**or NULL if the command is not found
+*/
+
 char	*get_path(char *name, char **env)
 {
-	char 	**begin;
+	char	**begin;
 	char	**binfolders;
 	char	*path;
+	char	*path_env;
 
 	path = NULL;
-	binfolders = get_binfolders(env);
+	binfolders = NULL;
+	if ((path_env = ft_getenv("PATH", env)))
+		binfolders = ft_strsplit(path_env, ':');
 	begin = binfolders;
 	while (*binfolders)
 	{
 		if (isinfolder(*binfolders, name))
 		{
 			path = ft_strjoindelimiter(*binfolders, '/', name);
-			break;
+			break ;
 		}
 		binfolders++;
 	}

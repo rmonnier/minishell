@@ -12,7 +12,12 @@
 
 #include "minishell.h"
 
-int		builtin_env(char *path, char **env)
+int		builtin_pwd(void)
 {
-	return (0);
+	char *cwd;
+
+	cwd = getcwd(NULL, 0);
+	ft_printf("%s\n", cwd);
+	free(cwd);
+	return (1);
 }

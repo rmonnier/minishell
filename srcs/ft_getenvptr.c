@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_strtabfree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:28:14 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/16 12:34:30 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/16 12:42:52 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		exec_cmd(char *path, char **argv, char **envp)
+char	**ft_getenvptr(char *name, char **env)
 {
-	pid_t	id_fils;
-	int		stat_loc;
-	int		pid_son;
+	int		len;
+	int		i;
 
-	id_fils = fork();
-	if (id_fils == 0)
+	len = ft_strlen(name);
+	i = 0;
+	while (env[i])
 	{
-		execve(path, argv, envp);
+		if (ft_strncmp(name, env[i], len) == 0)
+		{
+			if (*(env[i] + len) == '=')
+				return (env + i);
+		}
+		i++;
 	}
-	else
-	{
-		pid_son = wait(&stat_loc);
-	}
-	return (1);
+	return (NULL);
 }

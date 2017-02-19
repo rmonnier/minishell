@@ -6,13 +6,37 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/19 12:31:23 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		builtin_env(char *path, char **env)
+static int	unsetenv_one(char *env_entryname, char ***env)
 {
-	return (0);
+	char	**envptr;
+
+	if ((envptr = ft_getenvptr(env_entryname, *env)))
+	{
+		*env = ft_strtabdeleteone(*env, *envptr);
+	}
+	return (1);
+}
+
+int			builtin_unsetenv(char **argv, char ***env)
+{
+	int		i;
+	int		len;
+	char	*env_entryname;
+
+	i = 1;
+	while (argv[i])
+	{
+		len = ft_strchr(argv[i], '=') - argv[i];
+		env_entryname = strndup(argv[i], len);
+		unsetenv_one(env_entryname, env);
+		ft_strdel(&env_entryname);
+		i++;
+	}
+	return (1);
 }

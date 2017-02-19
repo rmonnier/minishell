@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:28:14 by rmonnier         ###   ########.fr       */
+/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
+/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		exec_cmd(char *path, char **argv, char **envp)
+void		builtin_echo(char **argv)
 {
-	pid_t	id_fils;
-	int		stat_loc;
-	int		pid_son;
+	int	i;
 
-	id_fils = fork();
-	if (id_fils == 0)
+	i = 1;
+	while (argv[i])
 	{
-		execve(path, argv, envp);
+		ft_printf("%s ", argv[i]);
+		i++;
 	}
-	else
-	{
-		pid_son = wait(&stat_loc);
-	}
-	return (1);
+	ft_printf("\n");
 }

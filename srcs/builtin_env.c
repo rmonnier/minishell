@@ -12,7 +12,15 @@
 
 #include "minishell.h"
 
-int		builtin_env(char *path, char **env)
+void	builtin_env(char **cmds, char **env)
 {
-	return (0);
+	int		i;
+
+	(void)cmds;
+	i = 0;
+	while (env[i])
+	{
+		ft_printf("%s\n", env[i]);
+		i++;
+	}
 }

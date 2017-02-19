@@ -10,26 +10,38 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME				=		minishell
+NAME					=		minishell
 
-SRCS_NAME			=		exec_cmd.c\
-									get_path.c\
-									minishell.c\
+SRCS_NAME			=		builtin_cd.c\
+									builtin_echo.c\
+									builtin_env.c\
+									builtin_exit.c\
+									builtin_pwd.c\
+									builtin_setenv.c\
+									builtin_unsetenv.c\
+									exec_builtin.c\
+									exec_cmd.c\
+									ft_getenv.c\
+									ft_getenvptr.c\
 									ft_strjoindelimiter.c\
+									ft_strtabappend.c\
+									ft_strtabdeleteone.c\
 									ft_strtabdup.c\
 									ft_strtabfree.c\
 									ft_strtabprint.c\
+									get_path.c\
+									minishell.c\
 									parse_prompt.c
 SRCS_PATH			=		srcs/
-SRCS				=		$(addprefix $(SRCS_PATH), $(SRCS_NAME))
+SRCS					=		$(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
 OBJ_NAME			=		$(SRCS_NAME:.c=.o)
 OBJ_PATH			=		obj/
-OBJ					=		$(addprefix $(OBJ_PATH), $(OBJ_NAME))
+OBJ						=		$(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-FLAGS				=		-Wall -Werror -Wextra
-INC					=		-I./includes/ -I./libft/includes/
-LIB					=		-L./libft/ -lft
+FLAGS					=		-Wall -Werror -Wextra
+INC						=		-I./includes/ -I./libft/includes/
+LIB						=		-L./libft/ -lft
 
 .PHONY: all, clean, fclean, re
 

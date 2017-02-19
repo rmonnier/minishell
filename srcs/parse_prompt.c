@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/19 12:29:56 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		iswhite(char c)
 	return ((c == ' ') || (c == '\n') || (c == '\t'));
 }
 
-static	int	number_of_words(char *str)
+static	int		number_of_words(char *str)
 {
 	int		n;
 
@@ -36,7 +36,7 @@ static	int	number_of_words(char *str)
 	return (n);
 }
 
-char		**parse_prompt(char *str)
+char			**parse_prompt(char *str)
 {
 	int		i;
 	int		j;
