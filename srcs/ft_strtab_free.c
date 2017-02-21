@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   ft_strtabfree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/16 12:34:30 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/16 12:40:58 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		builtin_exit(char **cmds, char **env)
+/*
+** frees the given tab.
+*/
+
+void	ft_strtab_free(char **tab)
 {
-	ft_strtab_free(cmds);
-	ft_strtab_free(env);
-	ft_printf("Bye bye!\n");
-	exit(EXIT_SUCCESS);
+	int		i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }

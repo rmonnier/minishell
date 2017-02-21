@@ -12,21 +12,18 @@
 
 #include "minishell.h"
 
-char	**ft_getenvptr(char *name, char **env)
+int	ft_setenv(char *name, char *value, char ***env)
 {
-	int		len;
-	int		i;
+	char	**envptr;
+	char	*env_new;
 
-	len = ft_strlen(name);
-	i = 0;
-	while (env[i])
+	env_new = ft_strjoindelimiter(name, '=', value);
+	if ((envptr = ft_getenv_ptr(name, *env)))
 	{
-		if (ft_strncmp(name, env[i], len) == 0)
-		{
-			if (*(env[i] + len) == '=')
-				return (env + i);
-		}
-		i++;
+		free(*envptr);
+		*envptr = env_new;
 	}
-	return (NULL);
+	else
+		*env = ft_strtab_add(*env, env_new);
+	return (1);
 }

@@ -12,13 +12,26 @@
 
 #include "minishell.h"
 
-static char	*new_env(char *name, char *content)
+static void		cd_errors(char *path)
 {
-	char *new_env;
+	struct stat	st;
 
-	new_env = ft_strjoin(name, content);
-	free(content);
-	return (new_env);
+	if (access(path, F_OK))
+	{
+		ft_putstr_fd("cd: no such file or directory: ", 2);
+		ft_putstr_fd(path, 2);
+	}
+	else if (stat(path, &st) || !S_ISDIR(st.st_mode))
+	{
+		ft_putstr_fd("cd: not a directory: ", 2);
+		ft_putstr_fd(path, 2);
+	}
+	else if (access(path, X_OK))
+	{
+		ft_putstr_fd("cd: permission denied: ", 2);
+		ft_putstr_fd(path, 2);
+	}
+	ft_putstr_fd("\n", 2);
 }
 
 int			builtin_cd(char **argv, char ***env)
@@ -30,12 +43,16 @@ int			builtin_cd(char **argv, char ***env)
 	if (!chdir(argv[1]))
 	{
 		pwd = getcwd(NULL, 0);
-		oldpwd = new_env("OLDPWD=", oldpwd);
-		pwd = new_env("PWD=", pwd);
-		setenv_one("PWD", pwd, env);
-		setenv_one("OLDPWD", oldpwd, env);
+		ft_setenv("PWD", pwd, env);
+		ft_setenv("OLDPWD", oldpwd, env);
 		free(pwd);
+		free(oldpwd);
+		return (1);
 	}
-	free(oldpwd);
-	return (1);
+	else
+	{
+		cd_errors(argv[1]);
+		free(oldpwd);
+		return (0);
+	}
 }

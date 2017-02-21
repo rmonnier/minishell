@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   ft_strtabfree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/16 12:34:30 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/16 12:42:52 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		builtin_exit(char **cmds, char **env)
+char	**ft_getenv_ptr(char *name, char **env)
 {
-	ft_strtab_free(cmds);
-	ft_strtab_free(env);
-	ft_printf("Bye bye!\n");
-	exit(EXIT_SUCCESS);
+	int		len;
+	int		i;
+
+	len = ft_strlen(name);
+	i = 0;
+	while (env[i])
+	{
+		if (ft_strncmp(name, env[i], len) == 0)
+		{
+			if (*(env[i] + len) == '=')
+				return (env + i);
+		}
+		i++;
+	}
+	return (NULL);
 }

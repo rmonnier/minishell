@@ -27,6 +27,6 @@ int		exec_builtin(char *name, char **argv, char ***env)
 	else if (ft_strcmp(name, "setenv") == 0)
 		builtin_setenv(argv, env);
 	else if (ft_strcmp(name, "unsetenv") == 0)
-		builtin_unsetenv(argv, env);
+		builtin_unsetenv(argv, *env);
 	return (1);
 }

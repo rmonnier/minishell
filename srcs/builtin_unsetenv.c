@@ -12,18 +12,18 @@
 
 #include "minishell.h"
 
-static int	unsetenv_one(char *env_entryname, char ***env)
+static int	unsetenv_one(char *env_entryname, char **env)
 {
 	char	**envptr;
 
-	if ((envptr = ft_getenvptr(env_entryname, *env)))
+	if ((envptr = ft_getenv_ptr(env_entryname, env)))
 	{
-		*env = ft_strtabdeleteone(*env, *envptr);
+		ft_strtab_delone(env, *envptr);
 	}
 	return (1);
 }
 
-int			builtin_unsetenv(char **argv, char ***env)
+int			builtin_unsetenv(char **argv, char **env)
 {
 	int		i;
 	int		len;

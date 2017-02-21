@@ -22,14 +22,17 @@ SRCS_NAME			=		builtin_cd.c\
 									exec_builtin.c\
 									exec_cmd.c\
 									ft_getenv.c\
-									ft_getenvptr.c\
+									ft_getenv_ptr.c\
+									ft_setenv.c\
 									ft_strjoindelimiter.c\
-									ft_strtabappend.c\
-									ft_strtabdeleteone.c\
-									ft_strtabdup.c\
-									ft_strtabfree.c\
-									ft_strtabprint.c\
-									get_path.c\
+									ft_strtab_add.c\
+									ft_strtab_delone.c\
+									ft_strtab_dup.c\
+									ft_strtab_free.c\
+									ft_strtab_print.c\
+									get_bin_path.c\
+									is_builtin.c\
+									minishell_errors.c\
 									minishell.c\
 									parse_prompt.c
 SRCS_PATH			=		srcs/

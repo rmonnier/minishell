@@ -1,37 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   ft_strtabappend.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:33:44 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/19 12:29:21 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/19 12:29:40 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	builtin_setenv(char **argv, char ***env)
+static int	tabsize(char **tab)
+{
+	int		n;
+
+	n = 0;
+	while (*tab)
+	{
+		n++;
+		tab++;
+	}
+	return (n);
+}
+
+/*
+** returns a new malloced tab.
+** the given string is added.
+** the old tab is freed.
+*/
+
+char		**ft_strtab_add(char **tab, char *str)
 {
 	int		i;
 	int		len;
-	char	*env_name;
-	char	*env_value;
+	char	**output;
 
-	i = 1;
-	while (argv[i])
+	len = tabsize(tab) + 1;
+	output = (char**)ft_memalloc(sizeof(char*) * (len + 1));
+	i = 0;
+	while (i < len - 1)
 	{
-		if (ft_strchr(argv[i], '='))
-		{
-			len = ft_strchr(argv[i], '=') - argv[i];
-			env_name = strndup(argv[i], len);
-			env_value = strdup(argv[i] + len + 1);
-			ft_setenv(env_name, env_value, env);
-			ft_strdel(&env_name);
-			ft_strdel(&env_value);
-		}
+		output[i] = tab[i];
 		i++;
 	}
-	return (1);
+	output[i] = str;
+	free(tab);
+	return (output);
 }

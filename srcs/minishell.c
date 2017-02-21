@@ -23,25 +23,6 @@ int		is_path(char *str)
 	return (0);
 }
 
-int		is_builtin(char *str)
-{
-	if (ft_strcmp(str, "cd") == 0)
-		return (1);
-	else if (ft_strcmp(str, "echo") == 0)
-		return (1);
-	else if (ft_strcmp(str, "pwd") == 0)
-		return (1);
-	else if (ft_strcmp(str, "env") == 0)
-		return (1);
-	else if (ft_strcmp(str, "setenv") == 0)
-		return (1);
-	else if (ft_strcmp(str, "unsetenv") == 0)
-		return (1);
-	else if (ft_strcmp(str, "exit") == 0)
-		return (1);
-	return (0);
-}
-
 int		exec_cmds(char **cmds, char ***env)
 {
 	char *path;
@@ -57,10 +38,15 @@ int		exec_cmds(char **cmds, char ***env)
 	{
 		exec_builtin(path, cmds, env);
 	}
-	else if ((path = get_path(path, *env)))
+	else if ((path = get_bin_path(path, *env)))
 	{
 		exec_cmd(path, cmds, *env);
 		ft_strdel(&path);
+	}
+	else
+	{
+		minishell_errors(NOTFOUND, cmds[0]);
+		return (-1);
 	}
 	return (1);
 }
@@ -73,15 +59,15 @@ int		main(int ac, char **av, char **env_ini)
 
 	(void)ac;
 	(void)av;
-	env = ft_strtabdup(env_ini);
+	env = ft_strtab_dup(env_ini);
 	ft_printf("Welcome to minishell - version 0.1\n");
 	while (ft_printf("$> ") && get_next_line(0, &line) == 1)
 	{
 		cmds = parse_prompt(line);
 		ft_strdel(&line);
 		exec_cmds(cmds, &env);
-		ft_strtabfree(cmds);
+		ft_strtab_free(cmds);
 	}
-	ft_strtabfree(env);
+	ft_strtab_free(env);
 	return (0);
 }

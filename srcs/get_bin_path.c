@@ -12,21 +12,7 @@
 
 #include "minishell.h"
 
-char	**get_binfolders(char **env)
-{
-	int		i;
-
-	i = 0;
-	while (env[i])
-	{
-		if (ft_strncmp(env[i], "PATH=", 5) == 0)
-			return (ft_strsplit(env[i] + 5, ':'));
-		i++;
-	}
-	return (NULL);
-}
-
-int		isinfolder(char *binfolder, char *name)
+static int		in_folder(char *binfolder, char *name)
 {
 	DIR				*dir;
 	struct dirent	*entry;
@@ -48,32 +34,31 @@ int		isinfolder(char *binfolder, char *name)
 }
 
 /*
-**get_path
-**returns a malloced path of the command "name",
-**or NULL if the command is not found
+** returns a malloced path of the command "name",
+** or NULL if the command is not found
 */
 
-char	*get_path(char *name, char **env)
+char	*get_bin_path(char *name, char **env)
 {
-	char	**begin;
-	char	**binfolders;
+	int		i;
+	char	**bin_folders;
 	char	*path;
 	char	*path_env;
 
 	path = NULL;
-	binfolders = NULL;
+	bin_folders = NULL;
 	if ((path_env = ft_getenv("PATH", env)))
-		binfolders = ft_strsplit(path_env, ':');
-	begin = binfolders;
-	while (*binfolders)
+		bin_folders = ft_strsplit(path_env, ':');
+	i = 0;
+	while (bin_folders[i])
 	{
-		if (isinfolder(*binfolders, name))
+		if (in_folder(bin_folders[i], name))
 		{
-			path = ft_strjoindelimiter(*binfolders, '/', name);
+			path = ft_strjoindelimiter(bin_folders[i], '/', name);
 			break ;
 		}
-		binfolders++;
+		i++;
 	}
-	ft_strtabfree(begin);
+	ft_strtab_free(bin_folders);
 	return (path);
 }

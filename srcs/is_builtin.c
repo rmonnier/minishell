@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtabdup.c                                     :+:      :+:    :+:   */
+/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/19 12:28:35 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:29:12 by rmonnier         ###   ########.fr       */
+/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/19 12:29:56 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	tabsize(char **tab)
+int		is_builtin(char *str)
 {
-	int		n;
-
-	n = 0;
-	while (*tab)
-	{
-		n++;
-		tab++;
-	}
-	return (n);
-}
-
-char		**ft_strtabdup(char **tab)
-{
-	int		i;
-	int		len;
-	char	**output;
-
-	len = tabsize(tab);
-	output = (char**)ft_memalloc(sizeof(char*) * (len + 1));
-	i = 0;
-	while (tab[i])
-	{
-		output[i] = ft_strdup(tab[i]);
-		i++;
-	}
-	return (output);
+	if (ft_strcmp(str, "cd") == 0)
+		return (1);
+	else if (ft_strcmp(str, "echo") == 0)
+		return (1);
+	else if (ft_strcmp(str, "pwd") == 0)
+		return (1);
+	else if (ft_strcmp(str, "env") == 0)
+		return (1);
+	else if (ft_strcmp(str, "setenv") == 0)
+		return (1);
+	else if (ft_strcmp(str, "unsetenv") == 0)
+		return (1);
+	else if (ft_strcmp(str, "exit") == 0)
+		return (1);
+	return (0);
 }
