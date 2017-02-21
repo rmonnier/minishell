@@ -38,9 +38,12 @@ int			builtin_cd(char **argv, char ***env)
 {
 	char *oldpwd;
 	char *pwd;
+	char *path;
 
+	if (!(path = argv[1] != NULL ? argv[1] : ft_getenv("HOME", *env)))
+		return (1);
 	oldpwd = getcwd(NULL, 0);
-	if (!chdir(argv[1]))
+	if (!chdir(path))
 	{
 		pwd = getcwd(NULL, 0);
 		ft_setenv("PWD", pwd, env);
@@ -51,7 +54,7 @@ int			builtin_cd(char **argv, char ***env)
 	}
 	else
 	{
-		cd_errors(argv[1]);
+		cd_errors(path);
 		free(oldpwd);
 		return (0);
 	}

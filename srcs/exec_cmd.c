@@ -21,6 +21,7 @@ int		exec_cmd(char *path, char **argv, char **envp)
 	id_fils = fork();
 	if (id_fils == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		execve(path, argv, envp);
 	}
 	else

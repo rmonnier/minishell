@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int		is_path(char *str)
+static int		is_path(char *str)
 {
 	while (*str)
 	{
@@ -23,7 +23,7 @@ int		is_path(char *str)
 	return (0);
 }
 
-int		exec_cmds(char **cmds, char ***env)
+static int		exec_cmds(char **cmds, char ***env)
 {
 	char *path;
 
@@ -59,6 +59,7 @@ int		main(int ac, char **av, char **env_ini)
 
 	(void)ac;
 	(void)av;
+	signal(SIGINT, SIG_IGN);
 	env = ft_strtab_dup(env_ini);
 	ft_printf("Welcome to minishell - version 0.1\n");
 	while (ft_printf("$> ") && get_next_line(0, &line) == 1)
