@@ -32,6 +32,7 @@ int		builtin_setenv(char **argv, char ***env);
 int		builtin_unsetenv(char **argv, char **env);
 int		exec_builtin(char *name, char **argv, char ***env);
 int		exec_cmd(char *path, char **argv, char **envp);
+int		exec_cmds(char **cmds, char ***env);
 char	*ft_getenv(char *name, char **env);
 char	**ft_getenv_ptr(char *name, char **env);
 int	ft_setenv(char *name, char *value, char ***env);
@@ -47,6 +48,10 @@ int		minishell_errors(int error, char *str);
 char	**parse_prompt(char *str);
 
 int		setenv_one(char *env_entryname, char *env_newentry, char ***env);
+
+
+extern char *ft_optarg;
+extern int ft_optind;
 
 enum
 {

@@ -23,7 +23,7 @@ static int		is_path(char *str)
 	return (0);
 }
 
-static int		exec_cmds(char **cmds, char ***env)
+int		exec_cmds(char **cmds, char ***env)
 {
 	char *path;
 
