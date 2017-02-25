@@ -34,13 +34,29 @@ static void		cd_errors(char *path)
 	ft_putstr_fd("\n", 2);
 }
 
+static char		*get_path(char **argv, char **env)
+{
+	char *path;
+
+	if (!argv[1])
+		path = ft_getenv("HOME", env);
+	else if (argv[1][0] == '-')
+	{
+		path = ft_getenv("OLDPWD", env);
+		ft_printf("%s\n", path);
+	}
+	else
+		path = argv[1];
+	return (path);
+}
+
 int			builtin_cd(char **argv, char ***env)
 {
 	char *oldpwd;
 	char *pwd;
 	char *path;
 
-	if (!(path = argv[1] != NULL ? argv[1] : ft_getenv("HOME", *env)))
+	if (!(path = get_path(argv, *env)))
 		return (1);
 	oldpwd = getcwd(NULL, 0);
 	if (!chdir(path))

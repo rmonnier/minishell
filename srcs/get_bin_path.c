@@ -45,10 +45,10 @@ char	*get_bin_path(char *name, char **env)
 	char	*path;
 	char	*path_env;
 
+	if (!(path_env = ft_getenv("PATH", env)))
+		return (NULL);
+	bin_folders = ft_strsplit(path_env, ':');
 	path = NULL;
-	bin_folders = NULL;
-	if ((path_env = ft_getenv("PATH", env)))
-		bin_folders = ft_strsplit(path_env, ':');
 	i = 0;
 	while (bin_folders[i])
 	{
