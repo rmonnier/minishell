@@ -61,8 +61,7 @@ int				builtin_cd(char **argv, char ***env)
 
 	if (!(path = get_path(argv, *env)))
 		return (1);
-	if (!(oldpwd = getcwd(NULL, 0)))
-		minishell_errors(NOCWD, NULL);
+	oldpwd = getcwd(NULL, 0);
 	if (!chdir(path))
 	{
 		pwd = getcwd(NULL, 0);
