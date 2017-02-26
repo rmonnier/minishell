@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:33:20 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/25 16:41:33 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int		in_folder(char *binfolder, char *name)
 ** or NULL if the command is not found
 */
 
-char	*get_bin_path(char *name, char **env)
+char			*get_bin_path(char *name, char **env)
 {
 	int		i;
 	char	**bin_folders;

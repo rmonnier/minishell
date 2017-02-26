@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/19 12:28:35 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:29:12 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/25 16:41:19 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	tabsize(char **tab)
 /*
 ** returns a malloced copy of the given tab.
 */
-
 
 char		**ft_strtab_dup(char **tab)
 {

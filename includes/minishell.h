@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:48:11 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:34:35 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/25 16:43:03 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-#include <sys/uio.h>
-
 int		builtin_cd(char **argv, char ***env);
 void	builtin_echo(char **argv);
 void	builtin_env(char **argv, char **env);
@@ -35,27 +33,22 @@ int		exec_cmd(char *path, char **argv, char **envp);
 int		exec_cmds(char **cmds, char ***env);
 char	*ft_getenv(char *name, char **env);
 char	**ft_getenv_ptr(char *name, char **env);
-int	ft_setenv(char *name, char *value, char ***env);
+int		ft_setenv(char *name, char *value, char ***env);
 char	*ft_strjoindelimiter(char const *s1, char delimiter, char const *s2);
 char	**ft_strtab_add(char **tab, char *str);
-void ft_strtab_delone(char **tab, char *str);
+void	ft_strtab_delone(char **tab, char *str);
 char	**ft_strtab_dup(char **tab);
 void	ft_strtab_free(char **tab);
 void	ft_strtab_print(char **tab);
 char	*get_bin_path(char *name, char **env);
 int		is_builtin(char *str);
-int		minishell_errors(int error, char *str);
+void	minishell_errors(int error, char *str);
 char	**parse_prompt(char *str);
-
-int		setenv_one(char *env_entryname, char *env_newentry, char ***env);
-
-
-extern char *ft_optarg;
-extern int ft_optind;
 
 enum
 {
 	NOTFOUND,
+	NOCWD,
 	USAGE,
 	MALL_ERR
 };

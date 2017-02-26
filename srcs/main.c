@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 18:52:02 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:31:10 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/02/25 15:54:45 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		is_path(char *str)
 	return (0);
 }
 
-int		exec_cmds(char **cmds, char ***env)
+int				exec_cmds(char **cmds, char ***env)
 {
 	char *path;
 
@@ -51,7 +51,7 @@ int		exec_cmds(char **cmds, char ***env)
 	return (1);
 }
 
-int		main(int ac, char **av, char **env_ini)
+int				main(int ac, char **av, char **env_ini)
 {
 	char	*line;
 	char	**env;

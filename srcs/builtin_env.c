@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/02/25 15:56:26 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/02/25 16:40:37 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static void	exec_modified_env(char **argv, char **env)
 	ft_strtab_free(modified_env);
 }
 
-
-void	builtin_env(char **cmds, char **env)
+void		builtin_env(char **cmds, char **env)
 {
 	if (cmds[1] == NULL)
 		ft_strtab_print(env);

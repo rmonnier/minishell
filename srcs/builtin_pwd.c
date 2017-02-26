@@ -16,7 +16,11 @@ int		builtin_pwd(void)
 {
 	char *cwd;
 
-	cwd = getcwd(NULL, 0);
+	if (!(cwd = getcwd(NULL, 0)))
+	{
+		minishell_errors(NOCWD, NULL);
+		return (-1);
+	}
 	ft_printf("%s\n", cwd);
 	free(cwd);
 	return (1);
