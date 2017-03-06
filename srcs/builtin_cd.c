@@ -34,22 +34,39 @@ static void		cd_errors(char *path)
 	ft_putstr_fd("\n", 2);
 }
 
+static char		*get_path_tilda(char **argv, char **env)
+{
+	char *home;
+	char *path;
+
+	home = ft_getenv("HOME", env);
+	path = ft_strjoindelimiter(home, '/', argv[1] + 1);
+	return (path);
+}
+
 static char		*get_path(char **argv, char **env)
 {
 	char *path;
 
 	if (!argv[1])
-		path = ft_getenv("HOME", env);
+		path = ft_strdup(ft_getenv("HOME", env));
 	else if (argv[1][0] == '-')
 	{
 		path = ft_getenv("OLDPWD", env);
 		if (path)
+		{
+			path = ft_strdup(path);
 			ft_printf("%s\n", path);
+		}
 		else
 			minishell_errors(NOCWD, NULL);
 	}
+	else if (argv[1][0] == '~')
+	{
+		path = get_path_tilda(argv, env);
+	}
 	else
-		path = argv[1];
+		path = ft_strdup(argv[1]);
 	return (path);
 }
 
@@ -78,5 +95,6 @@ int				builtin_cd(char **argv, char ***env)
 		cd_errors(path);
 		free(oldpwd);
 	}
+	free(path);
 	return (0);
 }

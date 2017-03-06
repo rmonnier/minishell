@@ -21,7 +21,7 @@ int		exec_builtin(char *name, char **argv, char ***env)
 	else if (ft_strcmp(name, "exit") == 0)
 		builtin_exit(argv, *env);
 	else if (ft_strcmp(name, "echo") == 0)
-		builtin_echo(argv);
+		builtin_echo(argv, *env);
 	else if (ft_strcmp(name, "pwd") == 0)
 		builtin_pwd();
 	else if (ft_strcmp(name, "setenv") == 0)

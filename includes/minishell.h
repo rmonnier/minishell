@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 
 int		builtin_cd(char **argv, char ***env);
-void	builtin_echo(char **argv);
+void	builtin_echo(char **argv, char **env);
 void	builtin_env(char **argv, char **env);
 void	builtin_exit(char **argv, char **env);
 int		builtin_pwd(void);
@@ -41,6 +41,7 @@ char	**ft_strtab_dup(char **tab);
 void	ft_strtab_free(char **tab);
 void	ft_strtab_print(char **tab);
 char	*get_bin_path(char *name, char **env);
+int		is_bin_path(char *path);
 int		is_builtin(char *str);
 void	minishell_errors(int error, char *str);
 char	**parse_prompt(char *str);

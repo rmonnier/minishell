@@ -32,7 +32,8 @@ int				exec_cmds(char **cmds, char ***env)
 		return (0);
 	if (is_path(path))
 	{
-		exec_cmd(path, cmds, *env);
+		if (is_bin_path(path))
+			exec_cmd(path, cmds, *env);
 	}
 	else if (is_builtin(path))
 	{
