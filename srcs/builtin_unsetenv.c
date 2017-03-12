@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/19 12:31:23 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/03/11 17:58:47 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			builtin_unsetenv(char **argv, char **env)
 	while (argv[i])
 	{
 		len = ft_strchr(argv[i], '=') - argv[i];
-		env_entryname = strndup(argv[i], len);
+		env_entryname = ft_strndup(argv[i], len);
 		unsetenv_one(env_entryname, env);
 		ft_strdel(&env_entryname);
 		i++;
