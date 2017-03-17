@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2016/11/09 12:56:05 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/03/17 12:11:13 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,16 @@
 void		builtin_echo(char **argv, char **env)
 {
 	int	i;
-	int	space;
-	char	*var_env;
+	int	first;
 
 	i = 1;
-	space = 0;
+	first = 1;
 	while (argv[i])
 	{
-		if (space == 1)
-			ft_printf(" ");
-		else
-			space = 1;
-		if (argv[i][0] == '$')
-		{
-			if ((var_env = ft_getenv(argv[i] + 1, env)))
-				ft_printf("%s", var_env);
-			else
-				space = 0;
-		}
-		else
+		if (first == 1)
 			ft_printf("%s", argv[i]);
+		else
+			ft_printf(" %s", argv[i]);
 		i++;
 	}
 	ft_printf("\n");
