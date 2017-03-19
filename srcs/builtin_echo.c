@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   builtin_echo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/07 23:23:53 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/03/17 12:11:13 by rmonnier         ###   ########.fr       */
+/*   Created: 2017/03/18 15:43:50 by rmonnier          #+#    #+#             */
+/*   Updated: 2017/03/18 15:43:54 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		builtin_echo(char **argv, char **env)
+void		builtin_echo(char **argv)
 {
 	int	i;
 	int	first;

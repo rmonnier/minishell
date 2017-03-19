@@ -6,7 +6,7 @@
 /*   By: rmonnier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/16 11:48:11 by rmonnier          #+#    #+#             */
-/*   Updated: 2017/02/25 16:43:03 by rmonnier         ###   ########.fr       */
+/*   Updated: 2017/03/18 15:44:15 by rmonnier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/stat.h>
 
 int		builtin_cd(char **argv, char ***env);
-void	builtin_echo(char **argv, char **env);
+void	builtin_echo(char **argv);
 void	builtin_env(char **argv, char **env);
 void	builtin_exit(char **argv, char **env);
 int		builtin_pwd(void);
