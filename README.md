@@ -9,6 +9,7 @@ Learn child processes management and see what's going on under the hood of a she
 ## Installation
 
 make
+
 ./minishell
 
 ## Which features are done
