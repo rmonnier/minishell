@@ -1,7 +1,5 @@
 ## Synopsis
 
-[![Build Status](https://travis-ci.org/JulienBalestra/minishell.svg?branch=master)](https://travis-ci.org/JulienBalestra/minishell)
-
 A minimum viable version of a shell. Project part of the Unix branch at 42 school.
 
 ## Motivation
