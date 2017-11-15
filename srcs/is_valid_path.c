@@ -12,7 +12,14 @@
 
 #include "minishell.h"
 
-int		is_bin_path(char *path)
+/*
+** check if :
+** - the file exists
+** - the file is a directory
+** - current user have the right to execute the file
+*/
+
+int		is_valid_path(char *path)
 {
 	struct stat	st;
 

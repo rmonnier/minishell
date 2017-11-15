@@ -38,7 +38,7 @@ static int		in_folder(char *binfolder, char *name)
 ** or NULL if the command is not found
 */
 
-char			*get_bin_path(char *name, char **env)
+char			*get_cmd_path(char *name, char **env)
 {
 	int		i;
 	char	**bin_folders;

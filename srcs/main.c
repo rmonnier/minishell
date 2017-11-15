@@ -23,26 +23,33 @@ static int		is_path(char *str)
 	return (0);
 }
 
+/*
+** if first word is :
+** - a path, execute the file pointed to
+** - a builtin command, execute builtin
+** - a binary name, look into PATH for that binary
+*/
+
 int				exec_cmds(char **cmds, char ***env)
 {
-	char *path;
+	char *cmd;
 
-	path = cmds[0];
-	if (!path)
+	cmd = cmds[0];
+	if (!cmd)
 		return (0);
-	if (is_path(path))
+	if (is_path(cmd))
 	{
-		if (is_bin_path(path))
-			exec_cmd(path, cmds, *env);
+		if (is_valid_path(cmd))
+			exec_cmd(cmd, cmds, *env);
 	}
-	else if (is_builtin(path))
+	else if (is_builtin(cmd))
 	{
-		exec_builtin(path, cmds, env);
+		exec_builtin(cmd, cmds, env);
 	}
-	else if ((path = get_bin_path(path, *env)))
+	else if ((cmd = get_cmd_path(cmd, *env)))
 	{
-		exec_cmd(path, cmds, *env);
-		ft_strdel(&path);
+		exec_cmd(cmd, cmds, *env);
+		ft_strdel(&cmd);
 	}
 	else
 	{
@@ -51,6 +58,14 @@ int				exec_cmds(char **cmds, char ***env)
 	}
 	return (1);
 }
+
+/*
+** - ignore ctrl-c command (prevent exiting shell)
+** - allocate a double tab for env variables and copy given ones
+** - infinite loop which iterate on every string terminated by \n
+**    - parse string into a tab
+**    - execute commands
+*/
 
 int				main(int ac, char **av, char **env_ini)
 {

@@ -12,6 +12,10 @@
 
 #include "minishell.h"
 
+/*
+** returns a pointer to the value of the given env variable name
+*/
+
 char	**ft_getenv_ptr(char *name, char **env)
 {
 	int		len;

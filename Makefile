@@ -30,8 +30,8 @@ SRCS_NAME			=		builtin_cd.c\
 									ft_strtab_dup.c\
 									ft_strtab_free.c\
 									ft_strtab_print.c\
-									get_bin_path.c\
-									is_bin_path.c\
+									get_cmd_path.c\
+									is_valid_path.c\
 									is_builtin.c\
 									main.c\
 									minishell_errors.c\
