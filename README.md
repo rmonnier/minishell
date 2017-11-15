@@ -6,7 +6,7 @@ A minimum viable version of a shell. Project part of the Unix branch at 42 schoo
 
 ## Motivation
 
-Learn child processes management and see what's going on under the hood of a shell.
+Learn child process management and discover what's going on under the hood of a shell.
 
 ## Installation
 
