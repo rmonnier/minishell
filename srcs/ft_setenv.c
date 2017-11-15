@@ -12,6 +12,10 @@
 
 #include "minishell.h"
 
+/*
+** set a new env variable
+*/
+
 int	ft_setenv(char *name, char *value, char ***env)
 {
 	char	**envptr;
